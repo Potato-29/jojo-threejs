@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+}
+@font-face {
+  font-family: "Fedora";
+  src: url("SF\ Fedora.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+body{
+  color: white;
+  font-family: "Fedora";
+}
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+main{
+  position: absolute;
+  display: grid;
+
+  grid-template-columns: repeat(12, 1fr);
+}
+header{
+  margin: 3rem 0rem;
+  padding: 1rem;
+  background-color: #7D226A;
+  grid-column: 2 / span 5;
+}
+section{
+  margin: 2rem 0rem;
+  background-color: #362336;
+  grid-column: 2 / 8;
+}
+blockquote{
+  grid-column: 2 / 8;
+  margin: 2rem 0rem;
+  padding: 0;
+}
+
+p{
+  font-size: 30px;
+}
+h1{
+  font-size: 56px;
+}
+h2{
+  font-size: 46px;
+}
+h3{
+  font-size: 40px;
+  margin: 3rem 0rem;
+}
