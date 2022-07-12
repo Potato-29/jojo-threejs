@@ -7,6 +7,13 @@
   font-weight: normal;
   font-style: normal;
 }
+:root {
+  --dark-bg: rgba(15, 15, 15, 0.95);
+  --spacing: 40rem;
+}
+/* background: rgba(125, 34, 106, 0.9);
+background: rgba(0, 0, 0, 0.8);
+background: rgba(255,255,255, 0.8); */
 body{
   color: white;
   font-family: "Fedora";
@@ -23,26 +30,43 @@ main{
 
   grid-template-columns: repeat(12, 1fr);
 }
-header{
-  margin: 3rem 0rem;
-  padding: 1rem;
-  background-color: #7D226A;
+header {
+  background: rgba(125, 34, 106, 0.9);
   grid-column: 2 / span 5;
-}
-section{
-  margin: 2rem 0rem;
-  background-color: #362336;
-  grid-column: 2 / 8;
-}
-blockquote{
-  grid-column: 2 / 8;
-  margin: 2rem 0rem;
-  padding: 0;
+  font-size: 2.5rem;
+  padding: 2rem;
+  margin-bottom: var(--spacing);
 }
 
-p{
-  font-size: 30px;
+section {
+  grid-column: 2 / 8;
+  padding: 1rem;
+  background: var(--dark-bg);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing);
 }
+
+blockquote {
+  margin: 0;
+  padding: 0;
+  grid-column: 2 / span 9;
+  margin-bottom: var(--spacing);
+}
+
+blockquote p {
+  color: black;
+  background-color: white;
+  font-size: 4rem;
+  display: inline;
+  line-height: 1;
+  padding: 50px;
+}
+
+/* p{
+  font-size: 30px;
+  
+} */
 h1{
   font-size: 56px;
 }

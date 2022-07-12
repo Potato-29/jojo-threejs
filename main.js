@@ -15,6 +15,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize( window.innerWidth, window.innerHeight );
 camera.position.setZ(30)
+camera.position.setX(-3)
 // renderer.render(scene, camera)
 
 
@@ -34,7 +35,7 @@ const ambientLight = new THREE.AmbientLight(0xffffff)
 
 scene.add(pointLight, ambientLight, )
 
-const controls = new OrbitControls(camera, renderer.domElement);
+// const controls = new OrbitControls(camera, renderer.domElement);
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25);
@@ -57,9 +58,10 @@ scene.background = woodTexture
 const prayasTexture = new THREE.TextureLoader().load('assets/pfp.jpg')
 
 const prayas = new THREE.Mesh(
-  new THREE.BoxGeometry(5,5,5),
+  new THREE.BoxGeometry(3,3,3),
   new THREE.MeshBasicMaterial({map: prayasTexture})
 )
+
 
 scene.add(prayas)
 
@@ -70,52 +72,72 @@ const moon = new THREE.Mesh(
   new THREE.MeshStandardMaterial({map: jojoTexture})
 )
 
-moon.position.z = 30;
+
+
+scene.add(moon)
+
+moon.position.z = 60;
 moon.position.setX(-10)
+// moon.position.setY()
+
+prayas.position.z = -5;
+prayas.position.x = 2;
+
+
 
 const jojoPng = new THREE.TextureLoader().load('assets/jojo.png')
 const jojoCube = new THREE.BoxGeometry(5,5,5)
 
-var cubeMaterialArray = []
 
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { map: jojoPng } ) );
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xff8800 } ) );
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0xffff33 } ) );
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x33ff33 } ) );
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x3333ff } ) );
-cubeMaterialArray.push( new THREE.MeshBasicMaterial( { color: 0x8833ff } ) );
-
-const jojoMaterial = new THREE.MeshBasicMaterial(cubeMaterialArray)
+const jojoMaterial = new THREE.MeshBasicMaterial({map: jojoPng, transparent: true})
 
 const jojoWalking = new THREE.Mesh(jojoCube, jojoMaterial)
 
-jojoWalking.position.z = 0
-jojoWalking.position.x = 30;
-
-
 scene.add(jojoWalking)
 
+const dioTexture = new THREE.TextureLoader().load('assets/dio.png')
 
-function moveCamera () {
+const dioWalking =  new THREE.Mesh(
+  new THREE.BoxGeometry(3,3,3),
+  new THREE.MeshBasicMaterial({map: dioTexture, transparent: true})
+)
+
+scene.add(dioWalking)
+
+dioWalking.position.z = 60
+dioWalking.position.x = 30
+
+function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
   // moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
+  moon.rotation.y += 0.045;
   // moon.rotation.z += 0.05;
 
-
-  prayas.rotation.x += 0.01;
   prayas.rotation.y += 0.01;
+  prayas.rotation.z += 0.01;
 
 
-  camera.position.x = t * -0.01;
-  camera.position.y = t * -0.0002;
-  camera.position.z = t * -0.0002;
+  jojoWalking.position.z = 25;
+  jojoWalking.rotation.x = 30;
+
+  dioWalking.position.z = 40;
+  dioWalking.position.x = 0;
+  // dioWalking.position.z = 30;
+  
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.rotation.y = t * -0.0002;
 }
 
-document.body.onscroll = moveCamera
 
 
-scene.add(moon)
+document.body.onscroll = moveCamera;
+moveCamera();
+
+
+
+
 
 
 
@@ -125,7 +147,9 @@ function animate() {
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
 
-  controls.update()
+  // moon.rotation.x += 0.005;
+
+  // controls.update()
 
   renderer.render(scene, camera)
 }
