@@ -50,7 +50,7 @@ section {
 blockquote {
   margin: 0;
   padding: 0;
-  grid-column: 2 / span 9;
+  grid-column: 2 / span 12;
   margin-bottom: var(--spacing);
 }
 
@@ -59,8 +59,8 @@ blockquote p {
   background-color: white;
   font-size: 4rem;
   display: inline;
-  line-height: 1;
-  padding: 50px;
+  /* line-height: 1; */
+  padding: 40px;
 }
 
 /* p{
